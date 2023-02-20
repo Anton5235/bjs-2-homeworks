@@ -17,5 +17,13 @@ console.log(solveEquation(1,2,3))
 
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
-  
+  if(isNaN(percent)) {
+    console.log("Первый параметр не является числом!")
+  };
+  if(isNaN(contribution)) {
+    console.log("Второй параметр не является числом!")
+  };
+  if(isNaN(amount)) {
+    console.log("Третий параметр не является числом!")
+  };
 }
