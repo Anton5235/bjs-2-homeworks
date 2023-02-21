@@ -18,18 +18,17 @@ console.log(solveEquation(1,2,3))
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
   if(isNaN(percent)) {
-    console.log("Первый параметр не является числом!")
+    return false;
   } ;
   if(isNaN(contribution)) {
-    console.log("Второй параметр не является числом!")
+    return false;
   };
   if(isNaN(amount)) {
-    console.log("Третий параметр не является числом!")
+    return false;
   };
   const s = amount - contribution;
   const p = (percent / 100) / 12;
   const monthPay = s * (p + (p / (((1 + p) ** countMonths) - 1)));
   const finalPay = Number((monthPay * countMonths).toFixed(2));
-  return finalPay
-}
+  return finalPay}
 console.log(calculateTotalMortgage(15, 0, 10000, 36));
