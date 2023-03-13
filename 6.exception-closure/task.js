@@ -8,11 +8,10 @@
 
   function validateCount (num) {
     try {
-      console.log(parseCount(num))
+      return parseCount(num);
     } catch (error) {
-      console.log(error)  
-    }
-  }
-  console.log(validateCount (NaN))
-  
+        return error
+    } 
+
+}
   
