@@ -1,8 +1,8 @@
 ﻿function parseCount (numb) {
-    let newNumb = Number.parseFloat(numb)
-    if(isNaN(newNumb)) {
-      return "Невалидное значение"
+    if(isNaN(numb)) {
+      console.log( "Невалидное значение")
+    } else {
+        return Number.parseFloat(numb)
     }
-    return newNumb
   }
   
