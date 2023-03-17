@@ -1,4 +1,4 @@
-﻿function parseCount (numb) {
+function parseCount (numb) {
     if(isNaN(numb)) {
         throw new Error ("Невалидное значение")
     } else {
@@ -12,6 +12,5 @@
     } catch (error) {
         return error
     } 
-
 }
   
