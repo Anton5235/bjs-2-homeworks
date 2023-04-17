@@ -36,11 +36,15 @@ function averageEvenElementsWorker(...arr) {
   return newArr.reduce((total, amount) => (total + amount / newArr.length), 0);
 };
 
-function makeWork(arrOfArr, func) {
-  let maxWorkerResult = - Infinity;
-  const newArr = arrOfArr.map(elem => elem.reduce((x, y) => x + y))
-  return Math.max(...newArr)
-
+function makeWork (arrOfArr, func) {
+  let maxWorkerResult = -Infinity;
+  const newArr = arrOfArr.map(elem => elem.reduce((x, y) => x + y));
+  if(Math.max(...newArr) > maxWorkerResult) {
+    maxWorkerResult = Math.max(...newArr);
+    return maxWorkerResult
+  }else{
+    return Math.max(...newArr)
+  }
 }
 const arr = [[10, 10, 11, 20, 10], [67, 10, 2, 39, 88], [72, 75, 51, 87, 43], [30, 41, 55, 96, 62]];
 console.log(makeWork(arr))
