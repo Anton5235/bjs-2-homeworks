@@ -21,17 +21,17 @@ Student.prototype.addMarks = function(...marksToAdd) {
 }
 
 Student.prototype.getAverage = function () {
-  if(this.marks) {
-    return this.marks.reduce((a, b) => a + b / this.marks.length, 0)
-  } else {
+  if(this.marks === undefined || this.marks.length === 0) {
     return 0
+  } else {
+    return this.marks.reduce((a, b) => a + b / this.marks.length, 0)
   }
 }
 
 Student.prototype.exclude = function (reason) {
   delete this.subject;
   delete this.marks;
-  this.exclude = reason
+  this.exclude = reason;
 }
 student1.setSubject("Algebra");
 console.log(student1.getAverage()); // 0
