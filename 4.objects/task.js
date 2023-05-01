@@ -2,40 +2,43 @@ function Student(name, gender, age) {
   this.name = name;
   this.gender = gender;
   this.age = age;
-  this.marks = [];
+  this.marks = []
 }
-Student();
+
 let student1 = new Student("Василиса", "женский", 19);
-student1.setSubject("Algebra");
-console.log(student1.getAverage()); // 0
-student1.addMarks(4, 5, 4, 5);
-console.log(student1.getAverage()); // 4.5
-console.log(student1);
-
 let student2 = new Student("Артём", "мужской", 25);
-student2.setSubject("Geometry");
-student2.exclude('плохая учёба')
-console.log(student2)
-let student3 = new Student();
 
-
-Student.prototype.setSubject = function (subjectName) {
-  Student.subject = subjectName;
+Student.prototype.setSubject = function(subjectName) {
+  this.subject = subjectName;
 }
 
-Student.prototype.addMarks = function (...marksToAdd) {
-  Student.addMarks = [...marksToAdd];
+Student.prototype.addMarks = function(...marksToAdd) {
+  if(this.marks) {
+    this.marks.push(...marksToAdd)
+  } else {
+    return 0
+  }
 }
 
 Student.prototype.getAverage = function () {
-  if(Student.marks) {
-    return this.marks.reduce((x, y) => x + y / this.marks.length)
+  if(this.marks) {
+    return this.marks.reduce((a, b) => a + b / this.marks.length, 0)
   } else {
     return 0
   }
 }
 
 Student.prototype.exclude = function (reason) {
-  
+  delete this.subject;
+  delete this.marks;
+  this.exclude = reason
 }
-
+student1.setSubject("Algebra");
+console.log(student1.getAverage()); // 0
+student1.addMarks(4, 5, 4, 5);
+console.log(student1.getAverage()); // 4.5
+console.log(student1);
+// {age: 19, gender: "женский", marks: [4, 5, 4, 5], name: "Василиса", subject: "Algebra"}
+student2.setSubject("Geometry");
+student2.exclude('плохая учёба')
+console.log(student2)
