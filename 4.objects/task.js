@@ -13,25 +13,21 @@ Student.prototype.setSubject = function(subjectName) {
 }
 
 Student.prototype.addMarks = function(...marksToAdd) {
-  if(this.marks) {
+  if(!this.marks) {
+    return 0}
     this.marks.push(...marksToAdd)
-  } else {
-    return 0
   }
-}
 
 Student.prototype.getAverage = function () {
   if(this.marks === undefined || this.marks.length === 0) {
-    return 0
-  } else {
+    return 0}
     return this.marks.reduce((a, b) => a + b / this.marks.length, 0)
-  }
 }
 
 Student.prototype.exclude = function (reason) {
   delete this.subject;
   delete this.marks;
-  this.exclude = reason;
+  this.excluded = reason;
 }
 student1.setSubject("Algebra");
 console.log(student1.getAverage()); // 0
