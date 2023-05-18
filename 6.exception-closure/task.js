@@ -20,7 +20,7 @@ class Triangle {
     this.b = b;
     this.c = c;
    
-    if(a, b, c <= 0 || a + b < c || a + c < b || b + c < a ){
+    if(a + b < c || a + c < b || b + c < a ){
       throw new Error ("Треугольник с такими сторонами не существует")
     }
 
@@ -32,8 +32,8 @@ class Triangle {
   }
 
   get area () {
-    let s = 0.5 * (this.a + this.b + this.c)
-    return (Math.sqrt(s * (s - this.a) * (s - this.b) * (s - this.c))).toFixed(3)
+    let s = 0.5 * this.perimeter;
+    return Number((Math.sqrt(s * (s - this.a) * (s - this.b) * (s - this.c))).toFixed(3))
   }
 }
 
