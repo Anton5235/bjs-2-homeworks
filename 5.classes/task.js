@@ -8,24 +8,24 @@ class PrintEditionItem {
   }
 
   fix () {
-   this.state = this.state * 1.5
+    this.state = this.state * 1.5
   }
-
 
   set state (newState) {
-    if (newState < 0 ) {
-      this._state = 0
-    } else if(newState > 100) {
+    if(newState > 100) {
       this._state = 100
-    } else {
-    this._state = newState
+  } else if(newState < 0) {
+    this._state = 0
+  } else {
+  this._state = newState
   }
 }
-  get state () {
-    return this._state
-  }
 
+    get state () {
+      return this._state
+    }
 }
+
 class Magazine extends PrintEditionItem{
 	constructor(name, releaseDate, pagesCount){
 		super(name, releaseDate, pagesCount);
@@ -38,34 +38,27 @@ class Book extends PrintEditionItem{
 		super(name, releaseDate, pagesCount);
     this.author = author;
 		this.type = "book";
-    
 	}
 }
 
 class NovelBook extends Book{
-	constructor(author, name, releaseDate, pagesCount, ){
-		super(name, releaseDate, pagesCount);
-    this.author = author;
+	constructor(author, name, releaseDate, pagesCount ){
+		super(author, name, releaseDate, pagesCount);
 		this.type = "novel";
-    
 	}
 }
 
 class FantasticBook extends Book{
 	constructor(author, name, releaseDate, pagesCount, ){
-		super(name, releaseDate, pagesCount);
-    this.author = author;
+		super(author, name, releaseDate, pagesCount);
 		this.type = "fantastic";
-    
 	}
 }
 
 class DetectiveBook extends Book{
 	constructor(author, name, releaseDate, pagesCount, ){
-		super(name, releaseDate, pagesCount);
-    	this.author = author;
+		super(author, name, releaseDate, pagesCount);
 		this.type = "detective";
-    
 	}
 }
 
@@ -77,22 +70,22 @@ class Library {
   }
 
   addBook(book) {
-    if(> 30) {
+    if(book.state > 30) {
       this.books.push(book)
     }
   }
 
   findBookBy(type, value) {
-    if(type || value) {
-      return this.books
-    }
-    return null
+    return this.books.find(el => el[type] == value) || null;
   }
+  
+  
   giveBookByName(bookName) {
-    if(!bookName) {
+    if(this.books.includes(bookName)) {
+      return this.books.splice(bookName)
+    } else {
       return null
     }
-    return bookName
   }
 
 }
