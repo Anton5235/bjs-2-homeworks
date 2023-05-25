@@ -7,18 +7,26 @@ class PrintEditionItem {
     this.type = null;
   }
 
- newState = fix () {
+  fix () {
    this.state = this.state * 1.5
   }
+  
+  set state (newState) {
+	if (newState < 0 ) {
+	  this._state = 0
+	}else if(newState > 100) {
+	  this._state = 100
+	}
+	this._state = newState
+  }
+
+  get state () {
+	return state
+  }
+
 }
 
-set state (newState) {
-  if (newState < 0 ) {
-    newState = 0
-  }else if(newState > 100) {
-    newState = 100
-  }
-}
+
 
 class Magazine extends PrintEditionItem{
 	constructor(name, releaseDate, pagesCount){
@@ -57,7 +65,7 @@ class FantasticBook extends Book{
 class DetectiveBook extends Book{
 	constructor(author, name, releaseDate, pagesCount, ){
 		super(name, releaseDate, pagesCount);
-    this.author = author;
+    	this.author = author;
 		this.type = "detective";
     
 	}
