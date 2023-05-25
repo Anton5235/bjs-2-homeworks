@@ -7,21 +7,25 @@ class PrintEditionItem {
     this.type = null;
   }
 
- newState = fix () {
+  fix () {
    this.state = this.state * 1.5
   }
-}
 
-set state (newState) {
-  if (newState < 0 ) {
-    newState = 0
-  }else if(newState > 100) {
-    newState = 100
+
+  set state (newState) {
+    if (newState < 0 ) {
+      this._state = 0
+    } else if(newState > 100) {
+      this._state = 100
+    } else {
+    this._state = newState
+  }
+}
+  get state () {
+    return this._state
   }
 
 }
-
-
 class Magazine extends PrintEditionItem{
 	constructor(name, releaseDate, pagesCount){
 		super(name, releaseDate, pagesCount);
@@ -73,7 +77,7 @@ class Library {
   }
 
   addBook(book) {
-    if(state > 30) {
+    if(> 30) {
       this.books.push(book)
     }
   }
