@@ -8,22 +8,23 @@ class PrintEditionItem {
   }
 
   fix () {
-    this.state * 1.5
+    this.state = this.state * 1.5
   }
 
-set state (state) {
-  if (state < 0 ) {
-    this.state = 0
-  }else if(state > 100) {
-    this.state = 100
-  }
-}
-
-  get state () {
-	  return this.state
+  set state (newState) {
+    if(newState > 100) {
+      this._state = 100
+  } else if(newState < 0) {
+    this._state = 0
+  } else {
+  this._state = newState
   }
 }
 
+    get state () {
+      return this._state
+    }
+}
 
 class Magazine extends PrintEditionItem{
 	constructor(name, releaseDate, pagesCount){
@@ -37,34 +38,27 @@ class Book extends PrintEditionItem{
 		super(name, releaseDate, pagesCount);
     this.author = author;
 		this.type = "book";
-    
 	}
 }
 
 class NovelBook extends Book{
-	constructor(author, name, releaseDate, pagesCount, ){
-		super(name, releaseDate, pagesCount);
-    this.author = author;
+	constructor(author, name, releaseDate, pagesCount ){
+		super(author, name, releaseDate, pagesCount);
 		this.type = "novel";
-    
 	}
 }
 
 class FantasticBook extends Book{
 	constructor(author, name, releaseDate, pagesCount, ){
-		super(name, releaseDate, pagesCount);
-    this.author = author;
+		super(author, name, releaseDate, pagesCount);
 		this.type = "fantastic";
-    
 	}
 }
 
 class DetectiveBook extends Book{
 	constructor(author, name, releaseDate, pagesCount, ){
-		super(name, releaseDate, pagesCount);
-    this.author = author;
+		super(author, name, releaseDate, pagesCount);
 		this.type = "detective";
-    
 	}
 }
 
@@ -76,22 +70,23 @@ class Library {
   }
 
   addBook(book) {
-    if(state > 30) {
+    if(book.state > 30) {
       this.books.push(book)
     }
   }
 
   findBookBy(type, value) {
-    if(type || value) {
-      return this.books
-    }
-    return null
+    return this.books.find(el => el[type] == value) || null;
   }
+  
+  
   giveBookByName(bookName) {
-    if(!bookName) {
+    if(this.books.includes(bookName)) {
+      return this.books.splice(bookName)
+    } else {
       return null
     }
-    return bookName
   }
 
 }
+
