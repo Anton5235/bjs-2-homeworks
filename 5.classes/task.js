@@ -62,7 +62,6 @@ class DetectiveBook extends Book{
 	}
 }
 
-
 class Library {
   constructor(name) {
     this.name = name;
@@ -79,14 +78,13 @@ class Library {
     return this.books.find(el => el[type] == value) || null;
   }
   
-  
   giveBookByName(bookName) {
-    if(this.books.includes(bookName)) {
-      return this.books.splice(bookName)
+    if(this.findBookBy(bookName)) {
+      this.books.filter(el => el !== bookName);
+      return bookName
     } else {
       return null
     }
   }
-
 }
 
