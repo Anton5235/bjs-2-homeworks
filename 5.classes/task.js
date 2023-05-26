@@ -78,10 +78,13 @@ class Library {
     return this.books.find(el => el[type] == value) || null;
   }
   
+
+
+  
   giveBookByName(bookName) {
-    if(this.findBookBy(bookName)) {
-      this.books.filter(el => el !== bookName);
-      return bookName
+    if(this.books.includes(bookName)) {
+      return this.books.splice(bookName)
+
     } else {
       return null
     }
