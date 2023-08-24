@@ -40,19 +40,18 @@ class AlarmClock {
         }
 
         this.intervalId = setInterval(() => 
-        function resetAllCalls() {
-            
-        
         
             this.alarmCollection.forEach((item) => {
-                if (this.getCurrentFormattedTime() == item.time && item.canCall === true){
-                    item.canCall == false;  
+                if (this.getCurrentFormattedTime() == item.time && item.canCall == true){
+                    item.canCall = false;  
                     item.callback();
-                    item.canCall = !item.canCall;    
                 }
-            })}, 1000);
+            }), 1000);
     }
 
+    resetAllCalls() {
+        this.alarmCollection.forEach(item => item.canCall = true)
+    }
     
 
     stop(){
