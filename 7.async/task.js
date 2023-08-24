@@ -9,7 +9,7 @@ class AlarmClock {
             throw new Error ('Отсутствуют обязательные аргументы')
         }
 
-        if(this.alarmCollection.some(item => item === currentTime)) {
+        if(this.alarmCollection.some(item => item.time === currentTime)) {
             console.warn('Уже присутствует звонок на это же время')
         }
 
@@ -40,24 +40,27 @@ class AlarmClock {
         }
 
         this.intervalId = setInterval(() => 
+        function resetAllCalls() {
+            
+        
         
             this.alarmCollection.forEach((item) => {
-                if (this.getCurrentFormattedTime() == item.time && this.resetAllCalls){
+                if (this.getCurrentFormattedTime() == item.time && item.canCall === true){
                     item.canCall == false;  
                     item.callback();
                     item.canCall = !item.canCall;    
                 }
-            }), 1000);
+            })}, 1000);
     }
+
+    
 
     stop(){
         clearInterval(this.intervalId);
         this.intervalId = null;
     }
 
-    resetAllCalls(){
-        this.alarmCollection.forEach((item) => item.canCall = true);
-    }
+    
 
     clearAlarms(){
         this.stop();
